@@ -4,5 +4,15 @@
 pragma solidity ^0.8.17;
 
 contract HelloWorld {
-    string public greet = "Hello World!";
+
+    address owner;
+
+    modifier onlyOwner{
+        require( msg.sender == owner, "You are not authorized" );
+        _;
+    }
+
+    function greet() public onlyOwner returns ( string memory){
+        return "Hello World";
+    }
 }
